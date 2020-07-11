@@ -1,0 +1,48 @@
+
+.reg{
+    background: rgb(104, 143, 204);
+    margin-left: 20px;
+    color: rgb(255, 255, 255);
+    font-size: medium;
+    text-align: justify;
+    border-radius: 7px;
+}
+.image_1{
+    background: rgb(82, 194, 204);
+}
+.profile{
+    border: 2px solid rgb(14, 16, 170) !important;
+    color: rgb(0, 0, 0) !important;
+}
+.boom{
+    color: rgb(0, 0, 0) !important;
+    text-decoration: double !important;
+}
+.noom{
+    color: rgb(204, 0, 0) !important;
+}
+.sad{
+    float: right !important;
+}
+.zoom{
+    font-size: 30px; !important;
+    color: rgb(0, 0, 0) !important;
+}
+.boomer{
+    border: solid 2px rgb(0, 0, 0) !important;
+}
+.table_head{
+color: rgb(0, 0, 0) !important;
+}
+.table_ali{
+    text-align: center !important;
+}
+.pass{
+    margin-left: 30%;
+}
+.image_input{
+    text-align: center;
+    float: right;
+
+}
+
