@@ -1,7 +1,9 @@
 <?php
 session_start();
-require_once ('../X/function.php');
+require_once ('../functions/function.php');
 $connection = mysqli_connect("localhost","root","","register_db");
+$get = selector($connection,"SELECT * FROM course_tb");
+$result = selector($connection,"SELECT * FROM academic_tb");
 
 if(isset( $_POST['course_submit'])){
 
@@ -11,10 +13,24 @@ if(isset( $_POST['course_submit'])){
         $year = $_SESSION['year'] = mysqli_escape_string($connection, $_POST['year']);
 
 
-//checking for empty
-        $post_arrays = array($course, $year);
+        //checking for empty
+        foreach($get as $key => $value){
+            if(!empty($course) && ($value != 'value')){
+                header("location:Reg_course.php?error=$error");
+            }
+        }
+        foreach($result as $key => $value){
+            if(!empty($year) && ($value != 'value')){
+               header("location:Reg_course.php?error=$error");
+            }
+        }
 
-//field arrays
+        $post_arrays = array($course, $year);
+        if(!empty($post_arrays) && ($course != "v" && $year != " ")){
+            header("location:Reg_course.php?error=$error");
+        }
+
+       //field arrays
         $field_array = array("course", "year");
 
 

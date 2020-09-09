@@ -18,7 +18,12 @@ if(isset( $_POST['submit'])) {
     $passport = $_FILES['passport']['name'];
     $passport_tmp = $_FILES['passport']['tmp_name'];
 
-    if (empty($first_name) || empty($last_name) || empty($email) || empty($phone_no)|| empty($dob) || empty($gender) || empty($passcode) || empty($con_passcode) || empty($address) || empty($region) || empty($state) || empty($country) || empty($passport)) {
+    $arrayError = array($first_name, $last_name, $email, $phone_no, $dob,
+        $gender, $passcode, $con_passcode, $address,$region, $state,
+        $country, $passport
+    );
+
+    if (empty($arrayError)) {
         header("Location: Sign_Up.php? empty field");
         exit();
     }else {
@@ -58,9 +63,10 @@ if(isset( $_POST['submit'])) {
 
             //move file to server
             if (move_uploaded_file($_FILES['passport']["tmp_name"], $path . $new_name)) {
-                header("location:Sign_Up.php?success=your file was uploaded!&image_name=$new_name");
-                die();
 
+            }else{
+                header("location:Sign_up.php?error=couldn't upload the file");
+                exit();
             }
             if ($passport === false) {
 
@@ -74,7 +80,7 @@ if(isset( $_POST['submit'])) {
                 } else {
                     $hashedpassword = md5($passcode);
 
-                    $query = "INSERT INTO regForm_tb (id,first_name,last_name,email,phone_no,dob,gender,passcode,address,region,state,country,passport) VALUES (null,'".$first_name."','".$last_name."','".$email."','".$phone_no."','".$dob."','".$gender."','".$hashedpassword."','".$address."','".$region."','".$state."','".$country."','".$passport."')";
+                    $query = "INSERT INTO regForm_tb (id,first_name,last_name,email,phone_no,dob,gender,passcode,address,region,state,country,passport) VALUES (null,'".$first_name."','".$last_name."','".$email."','".$phone_no."','".$dob."','".$gender."','".$hashedpassword."','".$address."','".$region."','".$state."','".$country."','".$new_name."')";
 
                     $result = mysqli_query($conn, $query);
                     if ($result === true) {
@@ -90,12 +96,12 @@ if(isset( $_POST['submit'])) {
                         unset($_SESSION['country']);
                         unset($_SESSION['passport']);
                         $success = "Your details has been successfully submitted!";
-                        header("location: Log_In.php?success=$success");
+                        header("Location:Dashboard/dashboard.html?Login success=$success");
                         exit();
 
 
                     } else {
-echo mysqli_error($conn); die();
+                         echo mysqli_error($conn); die();
                          header("location:Sign_Up.php?error=".mysqli_error($conn));
                     }
 
