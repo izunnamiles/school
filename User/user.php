@@ -88,7 +88,7 @@ include '../Layouts/sidebar.php';
 
                                          //foreach ($row as $value){
                                              ?>
-                                             <img id="myImg" class="avatar border-gray" src="../Images/Uploads/<?php echo $row['passport']; ?>" alt="No image" height="80%"/>
+                                             <img id="myImg" class="avatar border-gray" src="../Images/Uploads/<?php echo $row['passport']; ?>" alt="<?php echo $_SESSION['full_name'];?>" height="80%"/>
 
                                           <?php
                                         // }
@@ -97,16 +97,23 @@ include '../Layouts/sidebar.php';
 <!--                                         <img id="myImg" src="default.png" width="200" height="150">-->
 
                                          <!-- The Modal -->
+
                                          <div id="myModal" class="modal">
 
                                              <!-- The Close Button -->
                                              <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
-
                                              <!-- Modal Content (The Image) -->
                                              <img class="modal-content" id="img01">
 
                                              <!-- Modal Caption (Image Text) -->
                                              <div id="caption"></div>
+                                             <!--Form to change image-->
+                                             <form action="update_pro.php" method="post" enctype="multipart/form-data">
+                                                 <div class="col-md-offset-4 col-md-4 form-group-sm">
+                                                     <input id="form" type="file" name="uploadFile" class="form-control" required>
+                                                     <input type="submit" class="btn btn-sm btn-primary" name="uploadSubmit">
+                                                 </div>
+                                             </form>
                                          </div>
 
                                          <h4 class="title"><?php echo $_SESSION['full_name']; ?></h4>
@@ -152,10 +159,15 @@ include '../Layouts/footer.php';
     var img = document.getElementById('myImg');
     var modalImg = document.getElementById("img01");
     var captionText = document.getElementById("caption");
+    var file = document.getElementById('form');
     img.onclick = function(){
         modal.style.display = "block";
         modalImg.src = this.src;
         captionText.innerHTML = this.alt;
+       // modalImg.style.backgroundColor ="#e0ebeb";
+        var append = modalImg.src.appendChild(file);
+        append.style('justify-item: centre; max-height:30px')
+
     }
 
     // Get the <span> element that closes the modal

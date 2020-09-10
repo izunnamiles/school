@@ -28,7 +28,7 @@
             </ul>
         </nav>
         <p class="copyright pull-right">
-            &copy; <script>document.write(new Date().getFullYear())</script> <a href="#">Izunna Dev</a>
+            &copy; <script>document.write(new Date().getFullYear())</script> <a href="#">Powered by Izunna Dev</a>
         </p>
     </div>
 </footer>

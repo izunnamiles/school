@@ -119,7 +119,7 @@ if(!isset($_SESSION['unique_id'])){ header('location:../Log_In.php?error=Please 
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../User/lecturers.php">
                         <i class="pe-7s-info"></i>
                         <p>Lecturers</p>
                     </a>
